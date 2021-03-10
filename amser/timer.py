@@ -15,14 +15,17 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+import time
 
 class Timer(object):
     
     def __init__(self, name="unnamed"):
         self.name = name
+        self.start = 0
 
     def __enter__(self):
-        self.start = time.perf_counter()
+        self.start = time.perf_counter_ns()
 
     def __exit__(self, type, value, traceback):
-        print("{} took {} seconds".format(self.name, time.perf_counter() - self.start))
+        t = (time.perf_counter_ns() - self.start) / 1e9
+        print(F"{self.name} took {t} seconds")

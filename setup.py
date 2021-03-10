@@ -1,9 +1,8 @@
 from setuptools import setup, find_packages  # type:ignore
+from amser.version import version
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
-
-version = eval(open("amser/version.py", "r").read())  # nosec
 
 setup(
     name="amser",
